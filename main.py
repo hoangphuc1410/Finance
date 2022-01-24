@@ -27,9 +27,9 @@ def run():
         return f'{logger.error("Error")}'
     try:
 
-        repose = requests.post(url=endpoint, headers=headers, json=body)
+        reponse = requests.post(url=endpoint, headers=headers, json=body)
 
-        content = repose.json()['data']
+        content = reponse.json()['data']
         with sqlite3.connect('price.db') as conn:
             curs = conn.cursor()
             curs.execute("CREATE TABLE IF NOT EXISTS price (Price REAL)")
@@ -45,7 +45,7 @@ def run():
         logger.error(e)
 
 
-def splite():
+def insertDB():
 
     try:
         conn = sqlite3.connect("price.db")
@@ -62,5 +62,5 @@ if __name__ == '__main__':
     print("Running!")
     logger.info("----------")
     run()
-    splite()
+    insertDB()
 
